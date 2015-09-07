@@ -35,7 +35,7 @@ if('login' === $_REQUEST['action']){
     $did    = isset($_POST['device_id']) ? $_POST['device_id'] : '';
     
     $arr    = $cObj->getLatLongOfDevice($did);
-    print_r($arr);die;
+
     if(count($arr) == 2){
         $id     = $cObj->addDevice($userId, $name, $did, $arr[0], $arr[1]);
 	    if($id){

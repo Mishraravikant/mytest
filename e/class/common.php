@@ -35,7 +35,7 @@ class common extends connection
         $arr=array();
         if(isset($content)){
             $data   = explode(';',$content);
-            if(count($content) == 3){
+            if(count($data) == 3){
                 $arr    = explode(',',$data[1]);    
             }
         }    
