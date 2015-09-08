@@ -4,18 +4,19 @@ include 'class/common.php';
 
 if('login' === $_REQUEST['action']){
     $cObj   = new common();
-    $_POST
-    $email  = isset($_POST['email']) ? $_POST['email'] : '';
-    $pass   = isset($_POST['password']) ? $_POST['password'] : '';print_r($_POST);
-    $login  = $cObj->checkLogin($email, $pass);
     
+    $email  = isset($_POST['email']) ? $_POST['email'] : '';
+    $pass   = isset($_POST['pass']) ? $_POST['pass'] : '';
+    $login  = $cObj->checkLogin($email, $pass);print_r($_POST);
+
     if(count($login)){
         $_SESSION['user_id']	= $login[0]['id'];
         $_SESSION['name']		= $login[0]['name'];
         $_SESSION['email']		= $login[0]['email'];
+        header('Location: device.php');
     }else{
     	$_SESSION['msg']		= 'Invalid login credentials';
-    	//header('Location: index.php');
+    	header('Location: index.php');
     }
 
 }elseif('register' === $_REQUEST['action']){

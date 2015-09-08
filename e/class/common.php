@@ -7,9 +7,8 @@ class common extends connection
     }
     
     public function checkLogin($email, $password){
-        $query  = "SELECT * FROM user WHERE email=? AND password=? LIMIT 1";
+        echo $query  = "SELECT * FROM user WHERE email=? AND password=? LIMIT 1";
         $row    = $this->getAll($query, array($email, md5($password)));
-        print_r($row);
         return $row;
     }
     
