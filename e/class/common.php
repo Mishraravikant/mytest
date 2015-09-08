@@ -8,8 +8,9 @@ class common extends connection
     
     public function checkLogin($email, $password){
         $query  = "SELECT * FROM user WHERE email=? AND password=? LIMIT 1";
-        $row    = $this->getAll($query, array($email, $password));
-        return $rows;
+        $row    = $this->getAll($query, array($email, md5($password)));
+        print_r($row);
+        return $row;
     }
     
     public function registerUser($name, $email, $password){
@@ -25,9 +26,13 @@ class common extends connection
     }
     
     public function getMyDevices($userId){
-        $query  = "SELECT * FROM device WHERE user_id=?";
-        $rows   = $this->getAll($query, array($userId));
-        return $rows;
+        $query  	= "SELECT * FROM device WHERE user_id=?";
+        $rows   	= $this->getAll($query, array($userId));
+        $arrData	= array();
+        foreach ($rows as $row){
+        	$arrData[]	= array('device_name'=>$row['device_name'], 'device_id'=>$row['device_id'], 'lat'=>$row['lat'], 'long'=>$row['long']);
+        }
+        return $arrData;
     }
     
     public function getLatLongOfDevice($deviceId){//357803046658494
