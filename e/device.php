@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include 'class/common.php';
 $obj    = new common();
 $res    = $obj->getMyDevices($_SESSION['user_id']);

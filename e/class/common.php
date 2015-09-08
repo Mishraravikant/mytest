@@ -1,9 +1,16 @@
 <?php
+session_start();
 require_once 'connection.php';
 class common extends connection 
 {
     public function __construct(){
         parent::__construct();
+    }
+    
+    public function isUserLoggedIn(){
+        if(!isset($_SESSION['user_id'])){
+            header('Location: index.php');
+        }
     }
     
     public function checkLogin($email, $password){
